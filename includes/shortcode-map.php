@@ -5,13 +5,13 @@ $no_location_array = array();
 
 // WP_Query arguments
 $missionary_query_args = array (
-	'post_type'              => array( 'wwntbm_missionaries' ),
-	'post_status'            => array( 'publish' ),
-	'posts_per_page'         => '-1',
-	'cache_results'          => true,
-	'update_post_meta_cache' => true,
-	'update_post_term_cache' => true,
-	'order'                  => 'ASC',
+    'post_type'              => array( 'wwntbm_missionaries' ),
+    'post_status'            => array( 'publish' ),
+    'posts_per_page'         => '-1',
+    'cache_results'          => true,
+    'update_post_meta_cache' => true,
+    'update_post_term_cache' => true,
+    'order'                  => 'ASC',
     'orderby'                => 'meta_value',
     'meta_key'               => 'missionary_key',
 );
@@ -21,8 +21,8 @@ $missionary_query = new WP_Query( $missionary_query_args );
 
 // The Loop
 if ( $missionary_query->have_posts() ) {
-	while ( $missionary_query->have_posts() ) {
-		$missionary_query->the_post();
+    while ( $missionary_query->have_posts() ) {
+        $missionary_query->the_post();
 
         // get info
         $id = get_the_ID();
@@ -54,9 +54,9 @@ if ( $missionary_query->have_posts() ) {
                 'lng'       => $location['lng'],
             );
         }
-	}
+    }
 } else {
-	// no posts found
+    // no posts found
 }
 
 // Restore original Post Data
