@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Register Custom Post Type
+// Register Custom Post Types
 function wwntbm_custom_post_types() {
 
 	$missionary_labels = array(
@@ -130,7 +130,7 @@ function wwntbm_custom_post_types() {
 }
 add_action( 'init', 'wwntbm_custom_post_types', 0 );
 
-// Register Custom Taxonomy
+// Register Custom Taxonomies
 function custom_taxonomies() {
 
 	$labels = array(
@@ -297,3 +297,12 @@ function wwntbm_register_shortcode( $atts ) {
     include( 'includes/shortcode-map.php' );
 }
 add_shortcode( 'wwntbm_missionary_map', 'wwntbm_register_shortcode' );
+
+// Print missionary info
+function print_missionary( $name, $link, $image ) {
+    echo '<h2 class="missionary-listed">
+        <a href="' . $link . '">
+        ' . $image . '
+        <span class="missionary-name">' . $name . '</span></a>
+    </h2>';
+}
