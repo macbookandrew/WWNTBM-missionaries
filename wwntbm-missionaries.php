@@ -215,7 +215,7 @@ function custom_taxonomies() {
 add_action( 'init', 'custom_taxonomies', 0 );
 
 // Sort by beginning date ascending
-function sort_meetings( $query ) {
+function sort_missionaries( $query ) {
     if ( isset($query->query_vars['post_type']) && $query->query_vars['post_type'] == 'wwntbm_missionaries' ) {
         $query->set( 'order', 'ASC' );
         $query->set( 'orderby', 'meta_value' );
@@ -223,7 +223,7 @@ function sort_meetings( $query ) {
     }
     return $query;
 }
-//add_filter( 'pre_get_posts', 'sort_meetings' );
+add_filter( 'pre_get_posts', 'sort_missionaries' );
 
 // Add settings page
 add_action( 'admin_menu', 'wwntbm_missionaries_add_admin_menu' );
