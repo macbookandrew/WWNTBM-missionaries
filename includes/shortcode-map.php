@@ -35,8 +35,13 @@ function return_shortcode_map( $atts ) {
                 $location['lat'] = NULL;
                 $location['lng'] = NULL;
             }
+            if ( count( get_the_terms( $id, 'wwntbm_ministries' ) ) == 1 ) {
+                $ministry_suffix = 'Ministry';
+            } else {
+                $ministry_suffix = 'Ministries';
+            }
             $status = get_the_terms( $id, 'wwntbm_status' );
-            $ministry_categories_string = get_the_term_list( $id, 'wwntbm_ministries', NULL, ', ' );
+            $ministry_categories_string = get_the_term_list( $id, 'wwntbm_ministries', NULL, ', ', ' ' . $ministry_suffix );
             $status_categories_string = get_the_term_list( $id, 'wwntbm_status', NULL, ', ' );
 
             // set up this missionary info
