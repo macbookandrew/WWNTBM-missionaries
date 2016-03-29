@@ -68,7 +68,8 @@ wp_enqueue_style( 'wwntbm-missionaries-map' );
 echo '<div id="map"></div>';
 
 // output people with no location
-echo '<h2>Not listed on map</h2>';
+echo '<hr/>
+<h2>Not listed on map</h2>';
 foreach( $no_location_array as $missionary ) {
     echo '<h3><a href="' . $missionary['link'] . '">' . $missionary['name'] . '</a></h3>
     <p><a href="' . $missionary['link'] . '">' . $missionary['image'] . '</a></p>';
