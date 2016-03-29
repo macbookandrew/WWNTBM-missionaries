@@ -299,7 +299,7 @@ function wwntbm_register_shortcode( $atts ) {
 add_shortcode( 'wwntbm_missionary_map', 'wwntbm_register_shortcode' );
 
 // Print missionary info
-function print_missionary( $name, $link, $image ) {
+function print_missionary( $id, $name, $link, $image ) {
     echo '<h2 class="missionary-listed">
         <a href="' . $link . '">
         ' . $image . '

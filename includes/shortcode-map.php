@@ -25,6 +25,7 @@ if ( $missionary_query->have_posts() ) {
 		$missionary_query->the_post();
 
         // get info
+        $id = get_the_ID();
         $missionary_key = get_field( 'missionary_key' );
         if ( get_field( 'location' ) ) {
             $location = get_field( 'location' );
@@ -36,17 +37,19 @@ if ( $missionary_query->have_posts() ) {
         // add to array
         if ( $location['lat'] && $location['lng'] ) {
             $missionary_array[] = array(
+                'id'        => $id,
                 'name'      => get_the_title(),
                 'link'      => get_permalink(),
-                'image'     => wp_get_attachment_image( get_post_thumbnail_id( get_the_ID()), array( 300, 300 ) ),
+                'image'     => wp_get_attachment_image( get_post_thumbnail_id( get_the_ID()), 'category-thumb', false, array( 'class' => 'rounded shadowed' ) ),
                 'lat'       => $location['lat'],
                 'lng'       => $location['lng'],
             );
         } else {
             $no_location_array[] = array(
+                'id'        => $id,
                 'name'      => get_the_title(),
                 'link'      => get_permalink(),
-                'image'     => wp_get_attachment_image( get_post_thumbnail_id( get_the_ID()), array( 300, 300 ) ),
+                'image'     => wp_get_attachment_image( get_post_thumbnail_id( get_the_ID()), 'category-thumb', false, array( 'class' => 'rounded shadowed' ) ),
                 'lat'       => $location['lat'],
                 'lng'       => $location['lng'],
             );
@@ -71,8 +74,7 @@ echo '<div id="map"></div>';
 echo '<hr/>
 <h2>Not listed on map</h2>';
 foreach( $no_location_array as $missionary ) {
-    echo '<h3><a href="' . $missionary['link'] . '">' . $missionary['name'] . '</a></h3>
-    <p><a href="' . $missionary['link'] . '">' . $missionary['image'] . '</a></p>';
+    print_missionary( $missionary['id'], $missionary['name'], $missionary['link'], $missionary['image'] );
 }
 // output data
 wp_localize_script( 'wwntbm-missionaries-map', 'wwntbmMissionaries', $missionary_array );
