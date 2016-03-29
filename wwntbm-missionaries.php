@@ -294,15 +294,21 @@ add_action( 'wp_enqueue_scripts', 'wwntbm_register_google_map' );
 
 // Register shortcode
 function wwntbm_register_shortcode( $atts ) {
-    include( 'includes/shortcode-map.php' );
+    return return_shortcode_map( $atts );
 }
 add_shortcode( 'wwntbm_missionary_map', 'wwntbm_register_shortcode' );
 
 // Print missionary info
-function print_missionary( $id, $name, $link, $image ) {
-    echo '<h2 class="missionary-listed">
+function return_missionary( $id, $name, $link, $image ) {
+    return '<h2 class="missionary-listed">
         <a href="' . $link . '">
         ' . $image . '
         <span class="missionary-name">' . $name . '</span></a>
     </h2>';
 }
+function print_missionary( $id, $name, $link, $image ) {
+    echo return_missionary( $id, $name, $link, $image );
+}
+
+// include shortcode files
+include( 'includes/shortcode-map.php' );
