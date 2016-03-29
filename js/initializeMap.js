@@ -16,11 +16,14 @@ jQuery(document).ready(function() {
     var locations = [];
     jQuery(wwntbmMissionaries).each(function(key, val){
         var missionary = {
-            'name'        : val.name,
-            'link'        : val.link,
-            'image'       : val.image,
-            'latitude'    : val.lat,
-            'longitude'   : val.lng
+            'name'          : val.name,
+            'link'          : val.link,
+            'image'         : val.image,
+            'status'        : val.status,
+            'typeString'    : val.type_string,
+            'statusString'  : val.status_string,
+            'latitude'      : val.lat,
+            'longitude'     : val.lng
         };
 
         if ( val.lat && val.lng ) {
@@ -53,6 +56,16 @@ jQuery(document).ready(function() {
                 var infoWindowContent = '<h1><a href="' + thisLocation.link + '">' + thisLocation.name + '</a></h1>';
                 if (thisLocation.image) {
                     infoWindowContent += '<p><a href="' + thisLocation.link + '">' + thisLocation.image + '</a></p>';
+                }
+                if (thisLocation.typeString || thisLocation.statusString) {
+                    infoWindowContent += '<p>';
+                    if (thisLocation.typeString) {
+                        infoWindowContent += '<span class="field-of-service">' + thisLocation.typeString + '</span>';
+                    }
+                    if (thisLocation.statusString && thisLocation.status[0].name !== "Field") {
+                        infoWindowContent += '<span class="field-of-service">' + thisLocation.statusString + '</span>';
+                    }
+                    infoWindowContent += '</p>';
                 }
                 infoWindowContent += '<p><a href="' + thisLocation.link + '">More information&hellip;</a></p>';
 

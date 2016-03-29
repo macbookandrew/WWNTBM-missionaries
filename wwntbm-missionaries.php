@@ -299,15 +299,30 @@ function wwntbm_register_shortcode( $atts ) {
 add_shortcode( 'wwntbm_missionary_map', 'wwntbm_register_shortcode' );
 
 // Print missionary info
-function return_missionary( $id, $name, $link, $image ) {
-    return '<h2 class="missionary-listed">
-        <a href="' . $link . '">
-        ' . $image . '
-        <span class="missionary-name">' . $name . '</span></a>
-    </h2>';
+function return_missionary( $id, $name, $link = NULL, $image = NULL, $status = NULL, $type_string = NULL, $status_string = NULL ) {
+    $output = '<h2 class="missionary-listed">';
+    if ( $link ) {
+        $output .= '<a href="' . $link . '">';
+    }
+    if ( $image ) {
+        $output .= $image;
+    }
+    $output .= '<span class="missionary-name">' . $name . '</span>';
+    if ( $link ) {
+        $output .= '</a>';
+    }
+    if ( $type_string ) {
+        $output .= '<span class="field-of-service">' . $type_string . '</span>';
+    }
+    if ( $status_string && $status[0]->name !== 'Field' ) {
+        $output .= '<span class="field-of-service">' . $status_string . '</span>';
+    }
+    $output .= '</h2>';
+
+    return $output;
 }
-function print_missionary( $id, $name, $link, $image ) {
-    echo return_missionary( $id, $name, $link, $image );
+function print_missionary( $id, $name, $link = NULL, $image = NULL, $status = NULL, $type_string = NULL, $status_string = NULL ) {
+    echo return_missionary( $id, $name, $link, $image, $status, $type_string, $status_string );
 }
 
 // include shortcode files

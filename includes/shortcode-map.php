@@ -35,15 +35,21 @@ function return_shortcode_map( $atts ) {
                 $location['lat'] = NULL;
                 $location['lng'] = NULL;
             }
+            $status = get_the_terms( $id, 'wwntbm_status' );
+            $ministry_categories_string = get_the_term_list( $id, 'wwntbm_ministries', NULL, ', ' );
+            $status_categories_string = get_the_term_list( $id, 'wwntbm_status', NULL, ', ' );
 
             // set up this missionary info
             $this_missionary = array(
-                'id'        => $id,
-                'name'      => get_the_title(),
-                'link'      => get_permalink(),
-                'image'     => wp_get_attachment_image( get_post_thumbnail_id( get_the_ID()), 'category-thumb', false, array( 'class' => 'rounded shadowed' ) ),
-                'lat'       => $location['lat'],
-                'lng'       => $location['lng'],
+                'id'                => $id,
+                'name'              => get_the_title(),
+                'link'              => get_permalink(),
+                'image'             => wp_get_attachment_image( get_post_thumbnail_id( get_the_ID()), 'category-thumb', false, array( 'class' => 'rounded shadowed' ) ),
+                'lat'               => $location['lat'],
+                'lng'               => $location['lng'],
+                'status'            => $status,
+                'type_string'       => $ministry_categories_string,
+                'status_string'     => $status_categories_string,
             );
 
             // add to locations array
@@ -72,7 +78,7 @@ function return_shortcode_map( $atts ) {
     $shortcode_output .= '<hr/>
     <h2>Not listed on map</h2>';
     foreach( $no_location_array as $missionary ) {
-        $shortcode_output .= return_missionary( $missionary['id'], $missionary['name'], $missionary['link'], $missionary['image'] );
+        $shortcode_output .= return_missionary( $missionary['id'], $missionary['name'], $missionary['link'], $missionary['image'], $missionary['status'], $missionary['type_string'], $missionary['status_string'] );
     }
     // output data
     wp_localize_script( 'wwntbm-missionaries-map', 'wwntbmMissionaries', $missionary_array );
