@@ -3,10 +3,10 @@ var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: {
-            lat: 35.3192571,
-            lng: -81.6586981
+            lat: 0,
+            lng: 0
         },
-        zoom: 6
+        zoom: 1
     });
 }
 
@@ -32,8 +32,7 @@ jQuery(document).ready(function() {
     });
 
     // iterate over array and add markers to map
-    var infoWindow = new google.maps.InfoWindow({}),
-        LatLngList = new Array();
+    var infoWindow = new google.maps.InfoWindow({});
     for (var i = 0; i < locations.length; i++) {
         var thisLocation = locations[i];
 
@@ -43,9 +42,6 @@ jQuery(document).ready(function() {
             title: thisLocation.name,
             map: map
         });
-
-        // add to latLngList
-        LatLngList.push(new google.maps.LatLng(thisLocation.latitude, thisLocation.longitude));
 
         // add click listener
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -75,11 +71,4 @@ jQuery(document).ready(function() {
             }
         })(marker, i));
     }
-
-    // fit to bounds
-    var bounds = new google.maps.LatLngBounds();
-    for (var j in LatLngList) {
-        bounds.extend(LatLngList[j]);
-    }
-    map.fitBounds(bounds);
 });
