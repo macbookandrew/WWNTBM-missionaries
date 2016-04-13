@@ -337,3 +337,11 @@ function get_missionary_archive_template( $archive_template ) {
      return $archive_template;
 }
 add_filter( 'archive_template', 'get_missionary_archive_template' ) ;
+
+// list all missionaries on archive page
+function list_all_missionaries_on_archive( $query ) {
+    if ( ! is_admin() && $query->is_post_type_archive( 'wwntbm_missionaries' ) ) {
+        $query->set( 'posts_per_page', -1 );
+    }
+}
+add_filter( 'pre_get_posts', 'list_all_missionaries_on_archive' );
