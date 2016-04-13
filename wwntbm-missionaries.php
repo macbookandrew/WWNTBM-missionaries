@@ -3,7 +3,7 @@
  * Plugin Name: WWNTBM Missionaries
  * Plugin URI: https://github.com/macbookandrew/wwntbm-missionaries
  * Description: WWNTBM custom post types and shortcodes
- * Version: 1.0.1
+ * Version: 1.1
  * Author: AndrewRMinion Design
  * Author URI: https://andrewrminion.com
  */
