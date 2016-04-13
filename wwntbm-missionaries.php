@@ -327,3 +327,13 @@ function print_missionary( $id, $name, $link = NULL, $image = NULL, $status = NU
 
 // include shortcode files
 include( 'includes/shortcode-map.php' );
+
+// include custom archive
+function get_missionary_archive_template( $archive_template ) {
+     global $post;
+     if ( is_post_type_archive ( 'wwntbm_missionaries' ) ) {
+          $archive_template = dirname( __FILE__ ) . '/archive-missionaries.php';
+     }
+     return $archive_template;
+}
+add_filter( 'archive_template', 'get_missionary_archive_template' ) ;
