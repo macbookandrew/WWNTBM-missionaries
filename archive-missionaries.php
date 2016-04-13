@@ -20,33 +20,31 @@ get_header(); ?>
 			<?php if ( have_posts() ) : ?>
 
 				<header class="page-header">
-					<h1 class="page-title">
-						<?php if ( is_day() ) : ?>
-							<?php printf( __( 'Daily Archives: %s', 'twentyeleven' ), '<span>' . get_the_date() . '</span>' ); ?>
-						<?php elseif ( is_month() ) : ?>
-							<?php printf( __( 'Monthly Archives: %s', 'twentyeleven' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'twentyeleven' ) ) . '</span>' ); ?>
-						<?php elseif ( is_year() ) : ?>
-							<?php printf( __( 'Yearly Archives: %s', 'twentyeleven' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'twentyeleven' ) ) . '</span>' ); ?>
-						<?php else : ?>
-							<?php _e( 'Blog Archives', 'twentyeleven' ); ?>
-						<?php endif; ?>
-					</h1>
+					<h1 class="page-title">Missionaries</h1>
 				</header>
 
 				<?php twentyeleven_content_nav( 'nav-above' ); ?>
 
 				<?php /* Start the Loop */ ?>
-				<?php while ( have_posts() ) : the_post(); ?>
+				<?php while ( have_posts() ) : the_post();
 
-					<?php
-						/* Include the Post-Format-specific template for the content.
-						 * If you want to overload this in a child theme then include a file
-						 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-						 */
-						get_template_part( 'content', get_post_format() );
-					?>
+                    echo '<h2 class="missionary-listed">
+                        <a href="' . get_permalink() . '">';
+                            the_post_thumbnail('category-thumb', array('class' => 'rounded shadowed'));
+                            echo '<span class="missionary-name">' . get_the_title() . '</span>
+                        </a>';
 
-				<?php endwhile; ?>
+                        $wwntbm_field_region = get_post_meta(get_the_ID(), 'Field Region', true);
+                        $wwntbm_field = get_post_meta(get_the_ID(), 'Field', true);
+
+                        if ( $wwntbm_field_region != NULL ) {
+                            echo '<span class="field-of-service">' . $wwntbm_field_region . '</span>';
+                        } elseif ( $wwntbm_field != NULL ) {
+                            echo '<span class="field-of-service">' . $wwntbm_field . '</span>';
+                        }
+                    echo '</h2>';
+
+				endwhile; ?>
 
 				<?php twentyeleven_content_nav( 'nav-below' ); ?>
 
