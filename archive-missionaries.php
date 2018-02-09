@@ -25,6 +25,8 @@ get_header(); ?>
 
 				<?php twentyeleven_content_nav( 'nav-above' ); ?>
 
+				<div class="flex-container">
+
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post();
 
@@ -45,6 +47,8 @@ get_header(); ?>
                     echo '</h2>';
 
 				endwhile; ?>
+
+				</div>
 
 				<?php twentyeleven_content_nav( 'nav-below' ); ?>
 

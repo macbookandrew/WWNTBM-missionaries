@@ -81,10 +81,12 @@ function return_shortcode_map( $atts ) {
 
     // output people with no location
     $shortcode_output .= '<hr/>
-    <h2>Not listed on map</h2>';
+    <h2>Not listed on map</h2>
+    <div class="flex-container">';
     foreach( $no_location_array as $missionary ) {
         $shortcode_output .= return_missionary( $missionary['id'], $missionary['name'], $missionary['link'], $missionary['image'], $missionary['status'], $missionary['type_string'], $missionary['status_string'] );
     }
+    $shortcode_output .= '</div>';
     // output data
     wp_localize_script( 'wwntbm-missionaries-map', 'wwntbmMissionaries', $missionary_array );
     return $shortcode_output;
