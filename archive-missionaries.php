@@ -30,7 +30,7 @@ get_header(); ?>
 				<?php /* Start the Loop */ ?>
 				<?php while ( have_posts() ) : the_post();
 
-                    echo '<h2 class="missionary-listed">
+                    echo '<h3 class="missionary-listed">
                         <a href="' . get_permalink() . '">';
                             the_post_thumbnail('category-thumb', array('class' => 'rounded shadowed'));
                             echo '<span class="missionary-name">' . get_the_title() . '</span>
@@ -44,7 +44,7 @@ get_header(); ?>
                         } elseif ( $wwntbm_field != NULL ) {
                             echo '<span class="field-of-service">' . $wwntbm_field . '</span>';
                         }
-                    echo '</h2>';
+                    echo '</h3>';
 
 				endwhile; ?>
 
