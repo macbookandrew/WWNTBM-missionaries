@@ -300,7 +300,7 @@ add_shortcode( 'wwntbm_missionary_map', 'wwntbm_register_shortcode' );
 
 // Print missionary info
 function return_missionary( $id, $name, $link = NULL, $image = NULL, $status = NULL, $type_string = NULL, $status_string = NULL ) {
-    $output = '<h2 class="missionary-listed">';
+    $output = '<h3 class="missionary-listed">';
     if ( $link ) {
         $output .= '<a href="' . $link . '">';
     }
@@ -317,7 +317,7 @@ function return_missionary( $id, $name, $link = NULL, $image = NULL, $status = N
     if ( $status_string && $status[0]->name !== 'Field' ) {
         $output .= '<span class="field-of-service">' . $status_string . '</span>';
     }
-    $output .= '</h2>';
+    $output .= '</h3>';
 
     return $output;
 }
