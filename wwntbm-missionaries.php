@@ -3,7 +3,7 @@
  * Plugin Name: WWNTBM Missionaries
  * Plugin URI: https://github.com/macbookandrew/wwntbm-missionaries
  * Description: WWNTBM custom post types and shortcodes
- * Version: 1.2
+ * Version: 1.2.2
  * Author: AndrewRMinion Design
  * Author URI: https://andrewrminion.com
  *
@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-$wwntbm_missionaries_plugin_version = '1.2.1';
+define( 'WWNTBM_MISSIONARIES_PLUGIN_VERSION', '1.2.2' );
 
 /**
  * Register custom post types.
@@ -334,8 +334,8 @@ function wwntbm_register_google_map() {
 	$missionaries_settings = get_option( 'wwntbm_missionaries_settings' );
 
 	wp_register_script( 'google-map-api', 'https://maps.googleapis.com/maps/api/js?key=' . $missionaries_settings['wwntbm_missionaries_api_key'] . '&amp;callback=initMap', array( 'wwntbm-missionaries-map' ), null, true ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.MissingVersion
-	wp_register_script( 'wwntbm-missionaries-map', plugins_url( 'js/initializeMap.min.js', __FILE__ ), array( 'jquery' ), $wwntbm_missionaries_plugin_version, true );
-	wp_register_style( 'wwntbm-missionaries-map', plugins_url( 'css/wwntbm-missionaries-map.css', __FILE__ ), array(), $wwntbm_missionaries_plugin_version );
+	wp_register_script( 'wwntbm-missionaries-map', plugins_url( 'js/initializeMap.min.js', __FILE__ ), array( 'jquery' ), WWNTBM_MISSIONARIES_PLUGIN_VERSION, true );
+	wp_register_style( 'wwntbm-missionaries-map', plugins_url( 'css/wwntbm-missionaries-map.css', __FILE__ ), array(), WWNTBM_MISSIONARIES_PLUGIN_VERSION );
 }
 add_action( 'wp_enqueue_scripts', 'wwntbm_register_google_map' );
 
