@@ -14,6 +14,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$wwntbm_missionaries_plugin_version = '1.2.1';
+
 /**
  * Register custom post types.
  *
@@ -434,3 +436,4 @@ function list_all_missionaries_on_archive( $query ) {
 	}
 }
 add_filter( 'pre_get_posts', 'list_all_missionaries_on_archive' );
+
