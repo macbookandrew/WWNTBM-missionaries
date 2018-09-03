@@ -437,3 +437,13 @@ function list_all_missionaries_on_archive( $query ) {
 }
 add_filter( 'pre_get_posts', 'list_all_missionaries_on_archive' );
 
+/**
+ * Add Google Maps API key to ACF.
+ *
+ * @since 1.2.1
+ */
+function wwntbm_acf_init() {
+	$options = get_option( 'wwntbm_missionaries_settings' );
+	acf_update_setting( 'google_api_key', $options['wwntbm_missionaries_api_key'] );
+}
+add_action( 'acf/init', 'wwntbm_acf_init' );
