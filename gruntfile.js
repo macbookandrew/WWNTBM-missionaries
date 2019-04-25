@@ -10,7 +10,7 @@ module.exports = function (grunt) {
     uglify: {
         custom: {
             files: {
-                'js/initializeMap.min.js': ['js/initializeMap.js'],
+                'js/initializeMap.min.js': ['js/initializeMap.js', 'js/marker-clusterer.js'],
                 'js/backend.min.js': ['js/backend.js'],
             },
         },

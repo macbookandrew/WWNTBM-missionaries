@@ -99,6 +99,6 @@ function return_shortcode_map( $atts ) {
 	}
 	$shortcode_output .= '</div>';
 	// Output data.
-	wp_localize_script( 'wwntbm-missionaries-map', 'wwntbmMissionaries', $missionary_array );
+	wp_add_inline_script( 'wwntbm-missionaries-map', 'var wwntbm = {misionaries: ' . wp_json_encode( $missionary_array ) . ', markerUrl: "' . plugin_dir_url( __FILE__ ) . '/../img/"};', 'before' );
 	return $shortcode_output;
 }
