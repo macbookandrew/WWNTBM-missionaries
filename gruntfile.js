@@ -8,6 +8,9 @@ module.exports = function (grunt) {
         },
     },
     uglify: {
+        options: {
+            sourceMap: true,
+        },
         custom: {
             files: {
                 'js/initializeMap.min.js': ['js/initializeMap.js', 'js/marker-clusterer.js'],
