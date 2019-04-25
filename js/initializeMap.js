@@ -15,24 +15,25 @@ function initMap() {
     $(document).ready(function() {
         // get data from table
         var locations = [],
-            markers = [];
+            markers = [],
+            missionary;
 
-        $(wwntbm.missionaries).each(function(key, val){
-            var missionary = {
-                'name'          : val.name,
-                'link'          : val.link,
-                'image'         : val.image,
-                'status'        : val.status,
-                'typeString'    : val.type_string,
-                'statusString'  : val.status_string,
-                'latitude'      : val.lat,
-                'longitude'     : val.lng
+        for (var i = 0; i < wwntbm.missionaries.length; i++) {
+            missionary = {
+                'name'          : wwntbm.missionaries[i].name,
+                'link'          : wwntbm.missionaries[i].link,
+                'image'         : wwntbm.missionaries[i].image,
+                'status'        : wwntbm.missionaries[i].status,
+                'typeString'    : wwntbm.missionaries[i].type_string,
+                'statusString'  : wwntbm.missionaries[i].status_string,
+                'latitude'      : wwntbm.missionaries[i].lat,
+                'longitude'     : wwntbm.missionaries[i].lng
             };
 
-            if ( val.lat && val.lng ) {
+            if ( wwntbm.missionaries[i].lat && wwntbm.missionaries[i].lng ) {
                 locations.push(missionary);
             }
-        });
+        };
 
         // Iterate over array and add markers to map.
         var infoWindow = new google.maps.InfoWindow({});
